@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>主页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="js/common/flexible.js"></script>
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/mui.min1.css">
+    <link href="css/app/previewimage.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/app/Home_Page.css"/>
+    <link href="css/pullupordown.css" rel="stylesheet"/>
+    <script src="js/mui.min.js"></script>
+
+    <script src="js/mui.pullToRefresh.js"></script>
+    <script src="js/mui.pullToRefresh.material.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/app/QRcode/utf.js"></script>
+    <script src="js/app/QRcode/qrcode.js"></script>
+    <script src="js/app/QRcode/jquery.qrcode.js"></script>
+    <script src="js/common/rectify_deviation.js"></script>
+    <script src="js/common/common.js"></script>
+    <!--菜单相关-->
+    <script src="./js/jquery.min.js"></script>
+    <style type="text/css">
+        body {
+            background-color: #ffffff;
+            margin: 0px;
+        }
+
+
+        .newsBox {
+            color: #333333;
+            padding: 0 0 1.3rem 1rem;
+            margin-top: 2rem;
+        }
+
+        .newsList {
+            /* padding-bottom: 1.3rem; */
+            /* border-bottom: 1px solid #D4D4D4; */
+            margin-bottom: 3rem;
+            font-family: inherit;
+        }
+
+        .newsList .title {
+            /*padding-bottom: 1.3rem;*/
+            /*font-size: 5rem;*/
+            border-bottom: 1px solid #D4D4D4;
+            /*display: flex;*/
+            /*align-items: center;*/
+            text-align: center;
+        }
+
+        .newsList .answer {
+            margin-top: 2rem;
+            color: #333333;
+            letter-spacing: 5px;
+            /*text-indent: 2em;*/
+            font-size: 3rem;
+            line-height: initial;
+            /*color: #999999;*/
+            /*text-align: center;*/
+            /*position: relative;*/
+        }
+
+        .newsList img {
+            height: 40px;
+            width: 40px;
+            margin-right: 1rem;
+        }
+
+        .newsList .tTop {
+            font-size: 4.5rem;
+            color: #333333;
+        }
+
+        .newsList .tBottom {
+            text-align: start;
+            margin-top: 5rem;
+            color: #333333;
+            display: flex;
+            font-size: 2rem;
+        }
+
+
+        .answer img {
+            position: relative;
+            width: 80%;
+            height: 80%;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            -o-transform: translateX(-50%);
+            margin: 5rem 0;
+        }
+    </style>
+</head>
+
+<body>
+<div class="content">
+    <div class="newsBox" id="readList">
+
+    </div>
+</div>
+
+<script src="../js/mui.js"></script>
+
+<script src="../js/app/mui.zoom.js"></script>
+<script src="../js/app/mui.previewimage.js"></script>
+<script src="js/app/mui.zoom.js"></script>
+<script src="js/app/mui.previewimage.js"></script>
+<script type="text/javascript">
+    var globalUrl;
+    var port;
+
+    //得到全局url
+    GetUrl()
+
+    function GetUrl() {
+        globalUrl = "http://" + location.hostname;
+        port = ':' + location.port;
+    }
+
+    var param = {};
+    param.id = localStorage.getItem('zxid');
+    // alert(globalUrl + port)
+    $.ajax({
+        url: globalUrl + port + "/gateway/sc-admin/api/v1/sys/prevention/detail",
+        // url: "http://192.168.1.15:8040/sc-admin/api/v1/sys/prevention/detail",
+        data: param,
+        success: function (result) {
+            localStorage.removeItem('zxid')
+            // alert('ajaxOK')
+            var str = '';
+            if (!result.success) {
+                return;
+            } else {
+                var html = "";
+                var str = result.data.datails;
+                // alert(str)
+                // var sss = str.substring(0, str.indexOf("http")) + globalUrl + port + "/" + str.substring(str.indexOf("resources"))
+                var sss = str.replace(/http:\/\/jiujium1.sd96123.com:8081/g, globalUrl + port);
+                sss = sss.replace(/http:\/\/jiujiu.sd96123.com:8081/g, globalUrl + port);
+                sss = sss.replace(/http:\/\/192.168.1.118/g, globalUrl + port);
+                // alert(sss)
+                html += ' <div class="newsList">\n' +
+                    '            <div class="title">\n' +
+                    '                <div class="tTop">' + result.data.title + '</div>\n' +
+                    '                <div class="tBottom">\n' +
+                    '                    <div>' + result.data.source + '</div>\n' +
+                    '                    <div style="margin-left: 10rem;">' + result.data.releaseTime + '</div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '            <div class="answer">\n'
+                    + sss +
+                    '            </div>\n' +
+                    '        </div>'
+            }
+            // alert(str)
+            $("#readList").html('');
+            $("#readList").append(html);
+        },
+        err: function (err) {
+        },
+        async: false
+    });
+</script>
+
+
+</body>
+
+</html>

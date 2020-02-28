@@ -1,0 +1,48 @@
+.box-max-width {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.banner-yllogo {
+    display: none
+}
+
+.tab-nav-wrap-all {
+    display: none;
+}
+
+.mask-li-more {
+    display: none;
+}
+
+.pad-lr15 {
+    display: none;
+}
+
+.list-flex {
+    display: none;
+}
+
+.article-con video {
+    width: 100% !important;
+    height: 100% !important;
+    background: #f8f8f8;
+}
+
+.articleviewnum {
+    display: none;
+}
+
+video{
+    display: none;
+}
+
+a{
+    text-decoration: none;
+    color: #333333;
+}
+
+.tinfo{
+    display: none;
+}
+

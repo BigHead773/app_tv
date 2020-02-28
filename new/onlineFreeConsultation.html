@@ -1,0 +1,361 @@
+<!doctype html>
+<html style="height: 100%;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8"/>
+    <title>在线义诊</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/mui.min1.css" rel="stylesheet"/>
+    <link href="css/mui.picker.css" rel="stylesheet"/>
+    <link href="css/mui.poppicker.css" rel="stylesheet"/>
+    <link href="css/app/previewimage.css" rel="stylesheet">
+    <!--为解决mui上拉加载，未到底部就加载问题-->
+    <script>
+        var h5pullDown = true;
+    </script>
+    <script src="js/mui.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/common/common.js"></script>
+    <script src="js/common/rectify_deviation.js"></script>
+    <script src="js/mui.picker.js"></script>
+    <script src="js/mui.poppicker.js"></script>
+    <script src="js/city.data.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/app/medicalKey/TvHospital.js"></script>
+    <!--new add-->
+    <script src="./js/jquery.min.js"></script>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .mui-content {
+            width: 100%;
+            margin: 0 auto;
+            height: 100%;
+            background: #fff;
+            box-sizing: border-box;
+        }
+
+        .mui-content ul {
+            width: 100%;
+            white-space: nowrap;
+            /*padding: 0 5%;*/
+            height: 6%;
+            margin: 2% 0 0 0;
+            overflow-y: hidden;
+        }
+
+        .mui-content ul li {
+            width: auto;
+            float: left;
+            height: 100%;
+            color: #505050;
+            box-sizing: border-box;
+            position: relative;
+            /*margin-left: 8%;*/
+            font-size: 1rem;
+        }
+
+        .mui-content ul li:nth-child(1) {
+            margin-left: 0;
+        }
+
+        .mui-content ul li.active {
+            border-bottom: 0.3125rem solid #f18d43;
+            color: #f18d43;
+        }
+
+        .mui-content .content_ol {
+            /*height:35rem;*/
+            width: 100%;
+            height: auto;
+            overflow-x: hidden;
+            border-top: 0.1rem solid #e6e6e6;
+        }
+
+        .mui-content .content_ol li:after {
+            clear: both;
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            visibility: hidden;
+        }
+
+        .mui-content .content_ol li {
+            border-bottom: 0.16rem solid #e6e6e6;
+            /* height: 24%; */
+            width: 100%;
+            padding: 0 8% 0.5rem;
+            box-sizing: border-box;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        .mui-content .content_ol li img {
+            float: left;
+            width: 19.3%;
+            height: auto;
+            margin-top: 3.2%;
+        }
+
+        .mui-content .content_ol li .right_infor {
+            width: 74.9%;
+            height: 100%;
+            float: right;
+            padding-top: 4%;
+        }
+
+        .mui-content .content_ol li .right_infor div {
+            height: 1.8rem;
+            line-height: 1.8rem;
+        }
+
+        .mui-content .content_ol li .right_infor .u_name {
+            font-size: 1rem;
+            color: #505050;
+        }
+
+        .mui-content .content_ol li .right_infor .u_name span {
+            margin-left: 4%;
+            color: #4f4f4f;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .mui-content .content_ol li .right_infor .u_title {
+            font-size: 0.9rem;
+            color: #6e6e6e;
+        }
+
+        .mui-content .content_ol li .right_infor .u_adress {
+            font-size: 0.75rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #6e6e6e;
+            padding-right: 2rem;
+            /*border-bottom: 1px solid #e6e6e6;*/
+        }
+
+        .mui-content .content_ol li .right_infor a {
+            font-size: 0.9rem;
+            color: #f18d43;
+            line-height: 1.8rem;
+            height: 1.8rem;
+            display: block;
+            margin-top: 0.2rem;
+        }
+    </style>
+</head>
+
+<body style="background: white;height: 100%;padding: 0;">
+<header class="mui-bar mui-bar-nav" style="background: #f18d43;padding: 0 5%;">
+    <!--    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;">&nbsp;&nbsp;&nbsp;</a>-->
+    <div class="mui-title"
+         style="text-align: center;color: #fff;padding-left: 0.5rem;font-weight: normal;right: 200px;font-size: 3rem">
+        在线义诊
+    </div>
+    <!--    <span onclick="choseCity()" class="edit-button">选择区域</span>-->
+</header>
+<div class="mui-content" style="box-sizing: border-box;">
+    <div id="pullrefresh" class="mui-slider-item" style="overflow-x: hidden;z-index: 99;height:calc(100% - 40px)">
+        <div class="mui-scroll">
+            <ul id="doctorList" class="content_ol" style="margin: 0;">
+                <!--                <li data-dataid=493063-->
+                <!--                    data-datatype=https://img.sddingkao.com/files/attach/images/content/20181107/15415828011865.png-->
+                <!--                    class='car-item'>-->
+                <!--                    <img src="https://img.sddingkao.com/files/attach/images/content/20181107/15415828011865.png"-->
+                <!--                         onerror="this.src='image/mine/defaultImg.jpg'" alt="">-->
+                <!--                    <div class="right_infor">-->
+                <!--                        <div class="u_name">刘青武-->
+                <!--                            <span>内科</span>-->
+                <!--                            <span>在线</span>-->
+                <!--                        </div>-->
+                <!--                        <div class="u_title">住院医师</div>-->
+                <!--                        <div class="u_adress">济南高新区舜华路办事处未来城社区卫生服务站</div>-->
+                <!--                    </div>-->
+                <!--                </li>-->
+
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var pagenum = 1; //页数：初始化为1
+    var pageSize = 8; //每页显示数量
+    var endRow;
+    var total;
+    var globalUrl;
+    var port;
+
+    //得到全局url
+    GetUrl()
+
+    function GetUrl() {
+        globalUrl = "http://" + location.hostname;
+        port = ':' + location.port;
+        // console.log(globalUrl)
+    }
+
+    loadBottom();
+    $(window).scroll(function () {
+        //判断是否滑动到页面底部
+        if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+            // TODO 滑动到底部时可请求下一页的数据并加载，加载可使用append方法
+            if (pagenum <= 0) {
+                alert("无更多数据！");
+            } else {
+                pullupRefresh();
+            }
+        }
+    });
+
+    //加载下侧数据
+    function loadBottom() {
+        var param = {};
+        param.page = pagenum;
+        param.size = pageSize;
+        param.colId = "554";
+        // writeList()
+        $.ajax({
+            // url: "http://jiujium1.sd96123.com:8082/gateway/sc-admin/api/v1/sys/tv/hospital/listByHospital?page=1&size=10",
+            url: globalUrl + port + "/gateway/sc-admin/api/v1/sys/tv/hospital/listByHospital?page=1&size=10",
+            success: function (result) {
+                if (!result.success) {
+                    return;
+                } else {
+                    endRow = result.data.endRow;
+                    total = result.data.total;
+                    console.log(result.data.list.length)
+                    if (result.data.list.length === pageSize) {
+                        writeList(result.data);
+                    } else {
+                        writeList(result.data);
+                        pagenum = -99;
+                    }
+                }
+            }
+        })
+    }
+
+    //渲染下侧列表
+    function writeList(list) {
+        var list = list.list;
+        // var list = [{
+        //     "id": 148,
+        //     "doctorName": "尚明慧",
+        //     "goodSkills": "中医中药治疗",
+        //     "headImg": "http://jiujium1.sd96123.com:8081/resources/group1/M00/00/0F/wKgBCl2uWCaAar8XAAFcpm9utRg526_300x300.png",
+        //     "doctorIdcard": "370611198112190382",
+        //     "doctorSex": "0",
+        //     "doctorDep": "中医科",
+        //     "doctorTitle": "助理医师",
+        //     "doctorIntro": "尚明慧，女，毕业于山东中医药学校，中医专业。本科学历，曾就职于解放军第107医院急诊科。擅长中医治疗小儿科及疼痛科。",
+        //     "belongHospital": "14",
+        //     "belongArea": 78,
+        //     "belongAreaName": "福山区",
+        //     "hospitalName": "福山区福惠社区卫生服务站",
+        //     "easemobId": "ys_18660557588",
+        //     "yjtId": "511603",
+        //     "createTime": "2019-09-21",
+        //     "available": 1,
+        //     "onlineState": 1,
+        //     "onlineStatus": 3
+        // }, {
+        //     "id": 115,
+        //     "doctorName": "尚明慧",
+        //     "goodSkills": "中医中药治疗",
+        //     "headImg": "http://jiujium1.sd96123.com:8081/resources/group1/M00/00/0F/wKgBCl2uWCaAar8XAAFcpm9utRg526_300x300.png",
+        //     "doctorIdcard": "370611198112190382",
+        //     "doctorSex": "0",
+        //     "doctorDep": "中医科",
+        //     "doctorTitle": "助理医师",
+        //     "doctorIntro": "尚明慧，女，毕业于山东中医药学校，中医专业。本科学历，曾就职于解放军第107医院急诊科。擅长中医治疗小儿科及疼痛科。",
+        //     "belongHospital": "14",
+        //     "belongArea": 78,
+        //     "belongAreaName": "福山区",
+        //     "hospitalName": "福山区福惠社区卫生服务站",
+        //     "easemobId": "ys_18660557588",
+        //     "yjtId": "511603",
+        //     "createTime": "2019-09-21",
+        //     "available": 1,
+        //     "onlineState": 1,
+        //     "onlineStatus": 3
+        // }];
+        // console.log(JSON.stringify(list))
+        console.log(pagenum)
+        var html = "";
+        if (list.length > 0) {
+            for (var i = 0; i < list.length; i++) {
+                // var imgText = l.substring(l.indexOf("resources"));
+                // var imgStr = globalUrl + port + "/" + imgText;
+
+                if (list[i].onlineState == 1 && list[i].onlineStatus == 3) {
+                    if (list[i].headImg != null && list[i].headImg != '') {  //图片不为空
+                        var h = list[i].headImg
+                        var imgStr = globalUrl + port + "/" + h.substring(h.indexOf("resources"))
+                        // alert(list[i].headImg)
+                        // alert(imgStr)
+                    } else {
+                        var imgStr = "tabIndexs/feiyan/image/fightingTheOutbreak/defaultImg.jpg"
+                    }
+                    html += '<li data-dataid="' + list[i].id + '"\n' +
+                        '                    data-datatype="' + list[i].headImg + '"\n' +
+                        '                    class=\'car-item\' onclick="detail(this)">\n' +
+                        '                    <img src="' + imgStr + '" alt="">\n' +
+                        '                    <div class="right_infor">\n' +
+                        '                        <div class="u_name">' + list[i].doctorName + '\n' +
+                        '                            <span>' + list[i].doctorDep + '</span>\n' +
+                        '                           <span style="float:right;color:#f18d43">在线</span>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="u_title">' + list[i].doctorTitle + '</div>\n' +
+                        '                        <div class="u_adress">' + list[i].hospitalName + '</div>\n' +
+                        '                    </div>\n' +
+                        '                </li>'
+                }
+            }
+            $("#doctorList").append(html)
+        } else {
+            html += '<li style="text-align: center;border-bottom: none;">\n' +
+                '<h1>暂无医生在线</h1>' +
+                '</li>'
+            $("#doctorList").append(html)
+        }
+    }
+
+
+    //详情页面
+    function detail(e) {
+        console.log($(e)[0].dataset);
+        var id = $(e)[0].dataset.dataid;
+        var photoSrc = $(e)[0].dataset.datatype;
+        // window.parent.postMessage({ obj: { did: id, headImg: photoSrc }, html: "TvDoctorDetail.html" }, '*');
+        window.videoView.getXiangqingPage('tabIndexs/doctorDetailDsyy.html?id=' + id + '&imgUrl=' + photoSrc)
+    }
+
+
+    /**
+     * @method
+     * @param 无参数
+     * @returns 无返回值
+     * @desc 上拉加载具体业务实现
+     */
+    function pullupRefresh() {
+        console.log("刷新加载");
+        setTimeout(function () {
+            pagenum++;
+            loadBottom();
+        }, 500);
+
+    }
+</script>
+</body>
+
+</html>

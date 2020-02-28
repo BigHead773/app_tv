@@ -1,0 +1,570 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>主页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <!--    <meta name="apple-mobile-web-app-capable" content="yes">-->
+    <!--    <meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+    <!--    <script src="js/common/flexible.js"></script>-->
+    <!--    <link rel="stylesheet" href="../css/mui.min.css">-->
+    <!--    <link rel="stylesheet" href="../css/mui.min1.css">-->
+    <!--    <link href="../css/app/previewimage.css" rel="stylesheet">-->
+    <!--    <link rel="stylesheet" href="../css/app/Home_Page.css"/>-->
+    <!--    <link href="../css/pullupordown.css" rel="stylesheet"/>-->
+    <!--    <script src="js/mui.min.js"></script>-->
+
+    <!--    <script src="js/mui.pullToRefresh.js"></script>-->
+    <!--    <script src="js/mui.pullToRefresh.material.js"></script>-->
+    <!--    <script src="js/jquery-1.11.1.min.js"></script>-->
+    <!--    <script src="js/app/QRcode/utf.js"></script>-->
+    <!--    <script src="js/app/QRcode/qrcode.js"></script>-->
+    <!--    <script src="js/app/QRcode/jquery.qrcode.js"></script>-->
+    <!--    <script src="js/common/rectify_deviation.js"></script>-->
+    <!--    <script src="js/common/common.js"></script>-->
+    <!--本地相关-->
+    <script src="./js/jquery.min.js"></script>
+    <!-- <script src="js/app/outbreakConsultation/outbreakConsultation.js"></script> -->
+    <link href="./css/app/fightingTheOutbreak/fightingTheOutbreak.css" rel="stylesheet"/>
+    <style type="text/css">
+        body {
+            background-color: #ffffff;
+        }
+
+        .cardContent {
+            height: 15rem;
+            /*background-color: #fb9c58;*/
+            background-image: url(image/fightingTheOutbreak/biaotou.png);
+            background-size: 100% 100%;
+            /*background-size: cover;*/
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .cardBody {
+            height: 7.5rem;
+            background-color: #fdfffe;
+            box-shadow: 3px 3px 3px #888888;
+            border-radius: 3px;
+            position: absolute;
+            width: 85%;
+            top: 45%;
+            padding: .6rem .5rem;
+            background-image: url(image/fightingTheOutbreak/zhinan.png);
+            background-size: 100% 100%;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            -moz-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            -o-transform: translateX(-50%);
+        }
+
+        .cardHeader {
+            font-size: 1rem;
+        }
+
+        .cardBody .cardList {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .cardList .cardChild {
+            text-align: center;
+            line-height: 2rem;
+        }
+
+        .cardList .cardChild .number {
+            color: #e35519;
+            font-size: 1.5rem;
+        }
+
+        .menuContent {
+            display: flex;
+            margin-top: 3rem;
+            /* float: left; */
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .menuContent img {
+            height: 2.5rem;
+        }
+
+        .menuChild {
+            font-size: 1rem;
+            line-height: normal;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            border: 1px solid #CCCCCC;
+            width: 8rem;
+            margin: .5rem .3rem;
+        }
+
+        .newsBox {
+            color: #313131;
+            padding: 0 1rem;
+            margin-top: 2rem;
+        }
+
+        .readList {
+            /* padding-bottom: 1.3rem; */
+            /* border-bottom: 1px solid #D4D4D4; */
+            margin-bottom: 2rem;
+            font-family: inherit;
+        }
+
+        .readList .listChild {
+            margin-bottom: 3rem;
+        }
+
+        .readList .title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .imgBox {
+            /*display: flex;*/
+            /*justify-content: center;*/
+            text-align: center;
+        }
+
+        .readList .answer {
+            display: flex;
+            margin-top: 1rem;
+            /* justify-content: space-around; */
+            color: #8c8c8c;
+        }
+
+        .readList img {
+            width: 80%;
+        }
+
+        .readList .detail {
+            padding-top: .2rem;
+            display: flex;
+            align-items: baseline;
+            color: #595959;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .mui-content {
+            width: 100%;
+            margin: 0 auto;
+            height: 100%;
+            background: #fff;
+            box-sizing: border-box;
+        }
+
+        .mui-content ul {
+            width: 100%;
+            white-space: nowrap;
+            padding: 0 5%;
+            height: 6%;
+            margin: 2% 0 0 0;
+            overflow-y: hidden;
+        }
+
+        .mui-content ul li {
+            width: auto;
+            float: left;
+            height: 100%;
+            color: #505050;
+            box-sizing: border-box;
+            position: relative;
+            /*margin-left: 8%;*/
+            font-size: 1rem;
+        }
+
+        .mui-content ul li:nth-child(1) {
+            margin-left: 0;
+        }
+
+        .mui-content ul li.active {
+            border-bottom: 0.3125rem solid #f18d43;
+            color: #f18d43;
+        }
+
+        #pLi {
+            /*margin: 3rem;*/
+        }
+
+        .listBox {
+            display: flex;
+            /* align-items: center; */
+            margin: 3rem 5rem;
+            justify-content: space-around;
+        }
+
+        .rightBox {
+            margin-left: 1rem;
+            position: relative;
+            width: 60%;
+        }
+
+        .bottomDetail {
+            display: flex;
+            /* margin-top: 2rem; */
+            justify-content: space-between;
+            /* position: absolute; */
+            /* right: 0; */
+            bottom: 0;
+            position: absolute;
+            width: 100%;
+        }
+
+        /*!* 窄屏手机特殊处理 *!*/
+        /*@media screen and (max-width: 320px) {*/
+        /*    html {*/
+        /*        font-size: 12px !important;*/
+        /*    }*/
+        /*}*/
+
+        /*!* 平板特殊处理 *!*/
+        /*@media screen and (min-width: 600px) {*/
+        /*    html {*/
+        /*        font-size: 30px !important;*/
+        /*    }*/
+        /*}*/
+
+        /* 43寸电视处理 */
+        @media screen and (min-width: 1024px) {
+            html {
+                font-size: 40px !important;
+            }
+
+            .menuContent img {
+                height: 3.5rem;
+            }
+
+            .menuChild {
+                width: 12rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="content">
+    <div class="cardContent">
+        <div class="cardBody">
+
+        </div>
+    </div>
+    <div class="menuContent">
+        <a href="javascript:void(0)">
+            <div class="menuChild" data-href="view/personalProtection/understandingPneumonia.html">
+                <img src="image/personalProtection/liaojiexinguan.png">
+                <div>了解新冠</div>
+            </div>
+        </a>
+        <a href="javascript:void(0)">
+            <div class="menuChild" data-href="view/personalProtection/exposurePrevention.html">
+                <img src="image/personalProtection/jiechuyufang.png">
+                <div>接触预防</div>
+            </div>
+        </a>
+        <a href="javascript:void(0)">
+            <div class="menuChild" data-href="view/personalProtection/maskScience.html">
+                <img src="image/personalProtection/kouzhaokepu.png">
+                <div>口罩科普</div>
+            </div>
+        </a>
+        <a href="javascript:void(0)">
+            <div class="menuChild" data-href="view/personalProtection/homeIsolation.html">
+                <img src="image/personalProtection/jujiageli.png">
+                <div>居家隔离</div>
+            </div>
+        </a>
+        <a href="javascript:void(0)">
+            <div class="menuChild" data-href="view/personalProtection/closeContact.html">
+                <img src="image/personalProtection/meiqiejiechu.png">
+                <div>密切接触</div>
+            </div>
+        </a>
+        <a href="javascript:void(0)">
+            <div class="menuChild" data-href="view/personalProtection/Treatment.html">
+                <img src="image/personalProtection/zhenzhicuoshi.png">
+                <div>诊治措施</div>
+            </div>
+        </a>
+    </div>
+
+    <div class="newsBox">
+        <div class="readList">
+            <div class="listChild">
+                <div class="title">科学预防，这些常识要知道</div>
+                <a href="javascript:void(0)">
+                    <div class="imgBox" data-href="view/personalProtection/maskScience.html">
+                        <img src="image/fightingTheOutbreak/kouzhao.png">
+                    </div>
+                </a>
+            </div>
+
+            <div class="listChild">
+                <div class="title">正确隔离:不同群体隔离全攻略</div>
+                <a href="javascript:void(0)">
+                    <div class="imgBox" data-href="view/personalProtection/homeIsolation.html">
+                        <img src="image/fightingTheOutbreak/geli.jpg">
+                    </div>
+                </a>
+            </div>
+
+            <div class="listChild">
+                <div class="title">合理就医:有就医需求这样做</div>
+                <a href="javascript:void(0)">
+                    <div class="imgBox" data-href="view/personalProtection/Treatment.html">
+                        <img src="image/fightingTheOutbreak/seeDocter.jpg">
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="pullrefresh" class="mui-content mui-scroll-wrapper"
+         style="height: calc(100% - 5rem);position: initial;">
+        <div class="mui-scroll">
+            <ol id="listArea">
+            </ol>
+        </div>
+    </div>
+</div>
+
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/common/jquery.md5.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script type="text/javascript">
+    var pagenum = 1; //页数：初始化为1
+    var pageSize = 8; //每页显示数量
+    var endRow;
+    var total;
+    loadBottom();
+    $(window).scroll(function () {
+        //判断是否滑动到页面底部
+        if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+            // TODO 滑动到底部时可请求下一页的数据并加载，加载可使用append方法
+            if (pagenum <= 0) {
+                alert("无更多数据！");
+            } else {
+                pullupRefresh();
+            }
+        }
+    });
+
+    var globalUrl;
+    var port;
+
+    //得到全局url
+    GetUrl()
+
+    function GetUrl() {
+        globalUrl = "http://" + location.hostname;
+        port = ':' + location.port;
+        console.log(globalUrl + port)
+    }
+
+    //加载下侧数据
+    function loadBottom() {
+        var param = {};
+        param.page = pagenum;
+        param.size = pageSize;
+        param.colId = "554";
+        // writeList()
+        // alert(1)
+        $.ajax({
+            // 'url': "http://jiujiu.sd96123.com:8081/gateway/sc-admin/api/v1/sys/policy/news/getListByCol",
+            'url': globalUrl + port + "/gateway/sc-admin/api/v1/sys/policy/news/getListByCol",
+            'data': param,
+            'async': false,
+            'success': function (result) {
+                // alert(2)
+                if (!result.success) {
+                    return;
+                } else {
+                    endRow = result.data.endRow;
+                    total = result.data.total;
+                    // writeList(result.data);
+                    console.log(result.data.list.length)
+                    if (result.data.list.length === pageSize) {
+                        writeList(result.data);
+                    } else {
+                        writeList(result.data);
+                        pagenum = -99;
+                    }
+                }
+            },
+            'error': function (err) {
+            }
+        });
+    }
+
+    //渲染下侧列表
+    function writeList(list) {
+        var list = list.list;
+        // alert(3)
+        // var list = [{
+        //     "id": 714,
+        //     "clickNum": 0,
+        //     "systemId": 1,
+        //     "systemName": "云管理平台",
+        //     "orgId": null,
+        //     "colId": 554,
+        //     "bigcustemerId": null,
+        //     "isAudit": null,
+        //     "scope": null,
+        //     "auditBy": 1,
+        //     "auditor": "超级管理员",
+        //     "auditTime": "2020-02-17",
+        //     "status": "1",
+        //     "createBy": 13,
+        //     "creator": "admin",
+        //     "title": "一图读懂汇编：新型冠状病毒感染的肺炎防控科普宣传",
+        //     "memo": null,
+        //     "type": "2",
+        //     "isShow": 1,
+        //     "createTime": "2020-02-17",
+        //     "releaseTime": "2020-02-17",
+        //     "updateTime": null,
+        //     "endTime": null,
+        //     "rejectReason": null,
+        //     "toindexFlg": 0,
+        //     "topTime": null,
+        //     "content": "<h1>&nbsp;个人居家防护篇</h1>\n<p><img src=\"http://jiujium1.sd96123.com:8081/resources/group1/M00/00/2C/wKgBCl5KUbeAAKnGAWEdQf2Sb4c338.png\" title=\"1.???????.png\" alt=\"1.???????.png\" width=\"100%\"></p>\n<h1>交通工具防护篇</h1>\n<p><img src=\"http://jiujium1.sd96123.com:8081/resources/group1/M00/00/2C/wKgBCl5KUheALRIAAA4AQVtsHbY063.png\" title=\"2.???????.png\" alt=\"2.???????.png\" width=\"100%\"></p>\n<h1>医疗机构防护篇</h1>\n<p><img src=\"http://jiujium1.sd96123.com:8081/resources/group1/M00/00/2C/wKgBCl5KUlmAedu9ANBWnDYrL-E041.png\" title=\"3.????????.png\" alt=\"3.????????.png\" width=\"100%\"></p>\n<p>来源：国家卫生健康委疾控局、中国疾病预防控制中心</p>",
+        //     "imageurl": "http://jiujium1.sd96123.com:8081/resources/group1/M00/00/2C/wKgBCl5KUrOAOHOTAA7yNYmgJsw058.png",
+        //     "sysColumn": null
+        // },  {
+        //     "id": 712,
+        //     "clickNum": 0,
+        //     "systemId": 1,
+        //     "systemName": "云管理平台",
+        //     "orgId": null,
+        //     "colId": 554,
+        //     "bigcustemerId": null,
+        //     "isAudit": null,
+        //     "scope": null,
+        //     "auditBy": 1,
+        //     "auditor": "超级管理员",
+        //     "auditTime": "2020-02-17",
+        //     "status": "1",
+        //     "createBy": 13,
+        //     "creator": "admin",
+        //     "title": "预防新型冠状病毒感染的肺炎 请您注意》系列海报来了！【新型冠状病毒科普知识】",
+        //     "memo": null,
+        //     "type": "2",
+        //     "isShow": 1,
+        //     "createTime": "2020-02-17",
+        //     "releaseTime": "2020-02-17",
+        //     "updateTime": "2020-02-17",
+        //     "endTime": null,
+        //     "rejectReason": null,
+        //     "toindexFlg": 0,
+        //     "topTime": null,
+        //     "content": "<p><img src=\"http://jiujium1.sd96123.com:8081/resources/group1/M00/00/2B/wKgBCl5KUDyAFJkuAIps0fP-YcY455.png\" title=\"1.png\" alt=\"1.png\" width=\"100%\"></p>\n<p>制作：中国疾控中心</p>",
+        //     "imageurl": "http://jiujium1.sd96123.com:8081/resources/group1/M00/00/2C/wKgBCl5KVFyASgUMAABw_UinaEQ615.jpg",
+        //     "sysColumn": null
+        // }];
+        // console.log(JSON.stringify(list))
+        // console.log(pagenum)
+        var str = '';
+        if (list.length > 0) {
+            // alert(list)
+            for (var i = 0; i < list.length; i++) {
+                var title = list[i].title; //标题
+                if (list[i].title == "" || list[i].title == null) {
+                    title = "暂无";
+                } else {
+                    title = title.substring(0, 26) + "....";
+                }
+                var createTime = list[i].createTime; //创建时间
+                if (list[i].createTime == "" || list[i].createTime == null) {
+                    createTime = "暂无";
+                }
+                var auditor = list[i].auditor; //作者
+                if (list[i].auditor == "" || list[i].auditor == null) {
+                    auditor = "未知";
+                }
+
+                if (list[i].imageurl != '' && list[i].imageurl != null) {
+                    var h = list[i].imageurl
+                    var photo = globalUrl + port + "/" + h.substring(h.indexOf("resources"))
+                    // alert("photo1:" + photo)
+                } else {
+                    var photo = "tabIndexs/feiyan/image/fightingTheOutbreak/defaultImg.jpg"
+                    // alert("photo2:" + photo)
+                }
+                str += '<a>'
+                str += '<li class="mui-table-view-cell car-item" id="pLi" data-dataid="' + list[i].id + '" onclick="openActivity(' + list[i].id + ')">';
+                str += '<div class="listBox">'
+
+                str += '<div class="rightBox">';
+                str += '<span class="">' + title + '</span>';
+                str += '<div class="bottomDetail">';
+                str += '<p class="">' + auditor + '</p>';
+                str += '<p class="">' + createTime + '</p>';
+                str += '</div>';
+                str += '</div>';
+                str += '<img class="mui-media-object mui-pull-right" style="height:6rem;" src="' + photo +'"/>';
+                str += '</div>';
+                str += '</li>';
+                str += '</a>';
+            }
+            // alert(str)
+            $("#listArea").append(str);
+        }
+    }
+
+    //单击行、跳转详情页面
+    function openActivity(id) {
+        console.log(id)
+        window.videoView.getXiangqingPage('tabIndexs/informationPolicy.html?id=' + id)
+        // window.parent.postMessage({obj: {id: id}, html: "tabIndexs/informationPolicy.html"}, '*');
+    }
+
+    // $(".menuChild").click(function () {
+    //     var url = $(this).context.dataset.href
+    //     // console.log(url)
+    //     window.videoView.getXiangqingPage('tabIndexs/feiyan/' + url)
+    // })
+
+    $(".imgBox").click(function () {
+        var url = $(this).context.dataset.href
+        console.log(url)
+        window.videoView.getXiangqingPage('tabIndexs/feiyan/' + url)
+    })
+
+    /**
+     * @method
+     * @param 无参数
+     * @returns 无返回值
+     * @desc 上拉加载具体业务实现
+     */
+    function pullupRefresh() {
+        console.log("刷新加载");
+        setTimeout(function () {
+            pagenum++;
+            loadBottom();
+        }, 500);
+
+    }
+</script>
+
+<script type="text/javascript">
+    //事件
+</script>
+
+
+</body>
+
+</html>

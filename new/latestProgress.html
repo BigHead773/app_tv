@@ -1,0 +1,316 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>主页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="js/common/flexible.js"></script>
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/mui.min1.css">
+    <link href="css/app/previewimage.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/app/Home_Page.css" />
+    <link href="css/pullupordown.css" rel="stylesheet" />
+    <!--自写样式-->
+    <link rel="stylesheet" href="css/app/fightingTheOutbreak/fightingTheOutbreak.css">
+
+    <script src="js/mui.min.js"></script>
+    <script src="js/mui.pullToRefresh.js"></script>
+    <script src="js/mui.pullToRefresh.material.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/app/QRcode/utf.js"></script>
+    <script src="js/app/QRcode/qrcode.js"></script>
+    <script src="js/app/QRcode/jquery.qrcode.js"></script>
+    <script src="js/common/rectify_deviation.js"></script>
+    <script src="js/common/common.js"></script>
+    <!--菜单相关-->
+    <script src="js/app/fightTheOutbreak/latestProgress.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+        .content{
+            width: 100px;
+            height: 100px;
+            background-color: tomato;
+            position: absolute;
+            left: 50%;
+            top:50%;
+            transform: translate(-50%, -50%);
+        }
+        .cardBody {
+            padding: .5rem .5rem;
+            margin-top: 1rem;
+        }
+
+        .cardHeader {
+            font-size: 1rem;
+        }
+
+        .cardHeader .headerTop {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+        }
+
+        .cardHeader .headerTop img {
+            height: 20px;
+            width: 20px;
+        }
+
+        .cardHeader .headerTop .headerRight {
+            color: #999999;
+            display: flex;
+            font-size: .8rem;
+        }
+
+        .cardHeader .headerTop .headerLeft {
+            color: #577b9d;
+            font-size: 1.5rem;
+        }
+
+        .cardHeader .headerBottom {
+            color: #8f8f94;
+            font-size: 1rem;
+        }
+
+        .cardBody .cardList {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+
+        }
+
+        .cardList .cardChild {
+            text-align: center;
+            line-height: 2rem;
+            border: 2px solid #eeeeee;
+			border-radius: 5px;
+        }
+
+        .cardList .cardChild .cTop{
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .cardList .cardChild .cCenter{
+            font-size: 2rem;
+        }
+        .cardList .cardChild .cBottom{
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+
+        .menuContent img {
+            height: 3.2rem;
+        }
+
+
+        .dataBox {
+            color: #313131;
+            padding: 0 1rem;
+            margin-top: 2rem;
+        }
+
+        .dataList {
+            /* padding-bottom: 1.3rem; */
+            /* border-bottom: 1px solid #D4D4D4; */
+            margin-bottom: 3rem;
+            font-family: inherit;
+            margin-top: .5rem;
+        }
+
+        .dataList .title {
+            /* text-indent: 2em; */
+            color: #313131;
+            font-size: 1.3rem;
+        }
+
+        .dataList .imgBox {
+            display: flex;
+            margin-top: 10px;
+            justify-content: space-around;
+        }
+
+        .dataList img {
+            height: 76px;
+            padding: 0px 3px;
+        }
+
+        .dataList .detail {
+            padding-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            color: #989898;
+        }
+
+        .dataList .detail .dRight{
+            color: #577b9d;
+            font-size: 1.2rem;
+        }
+
+        .dataList .detail .dLeft{
+            color: #8f8f94;
+            font-size: 1rem;
+        }
+
+        .dataList .mui-table-view .child{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        .dataList #otherData .child{
+            display: flex;
+            justify-content: space-around;
+            /*margin-top: 1rem;*/
+        }
+
+        .dataList .mui-table-view .child div{
+            display: flex;
+        }
+
+        .dataBox img{
+            height: 21rem;
+            margin-bottom: 2rem;
+        }
+
+        .echartBox img{
+            height: 16rem;
+            margin-bottom: 2rem;
+        }
+
+        .mapBox, .echartBox{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div class="content">
+<!--    <div class="cardBody">-->
+<!--            <div class="cardHeader">-->
+<!--                <div class="headerTop">-->
+<!--                    <div class="headerLeft">全国实时动态</div>-->
+<!--                    <div class="headerRight">截止 06-30 15:30</div>-->
+<!--                </div>-->
+<!--                </div>-->
+<!--                <div class="cardList">-->
+<!--                    <div class="cardChild">-->
+<!--                        <div class="cTop">-->
+<!--                            确诊-->
+<!--                        </div>-->
+<!--                        <div class="cCenter" id="quezhen">-->
+<!--                            17238-->
+<!--                        </div>-->
+<!--                        <div class="cBottom" id="quezhen">较昨日+2827</div>-->
+<!--                    </div>-->
+<!--                    <div class="cardChild">-->
+<!--                        <div class="cTop">-->
+<!--                            疑似-->
+<!--                        </div>-->
+<!--                        <div class="cCenter" id="yisi">-->
+<!--                            238-->
+<!--                        </div>-->
+<!--                        <div class="cBottom" id="yisi">较昨日+2827</div>-->
+<!--                    </div>-->
+<!--                    <div class="cardChild">-->
+<!--                        <div class="cTop">-->
+<!--                            治愈-->
+<!--                        </div>-->
+<!--                        <div class="cCenter" id="zhiyu">-->
+<!--                            38-->
+<!--                        </div>-->
+<!--                        <div class="cBottom" id="zhiyu">较昨日+2827</div>-->
+<!--                    </div>-->
+<!--                    <div class="cardChild">-->
+<!--                        <div class="cTop">-->
+<!--                            死亡-->
+<!--                        </div>-->
+<!--                        <div class="cCenter" id="death">-->
+<!--                            38-->
+<!--                        </div>-->
+<!--                        <div class="cBottom" id="death">较昨日+2827</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--    <div class="dataBox">-->
+<!--        <div class="dataList">-->
+<!--            <div class="detail">-->
+<!--                <div class="dRight" style="color: #577b9d">本地疫情数据</div>-->
+<!--                <div class="dLeft">更多本地信息</div>-->
+<!--            </div>-->
+<!--            <div class="dataList">-->
+<!--                <ul class="mui-table-view">-->
+<!--                    <li class="mui-table-view-cell" id="localData">-->
+
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="mapBox">-->
+<!--            <img src="image/fightingTheOutbreak/map.png" alt="">-->
+<!--        </div>-->
+
+<!--        <div class="mapBox">-->
+<!--            <img src="image/fightingTheOutbreak/hubeiMap.png" alt="">-->
+<!--        </div>-->
+
+<!--        <div class="echartBox">-->
+<!--            <img src="image/fightingTheOutbreak/echartData.png" alt="">-->
+<!--        </div>-->
+
+<!--        <div class="echartBox">-->
+<!--            <img src="image/fightingTheOutbreak/echartData.png" alt="">-->
+<!--        </div>-->
+
+
+<!--        <div class="dataList">-->
+<!--            <div class="detail">-->
+<!--                <div class="dRight" style="color: #577b9d">各地疫情数据</div>-->
+<!--            </div>-->
+<!--            <div class="dataList">-->
+<!--                <ul class="mui-table-view">-->
+<!--                    <li class="mui-table-view-cell" id="otherData">-->
+
+<!--                    </li>-->
+<!--                </ul>-->
+
+
+<!--&lt;!&ndash;                <ul class="mui-table-view">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li class="mui-table-view-cell mui-collapse">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <a class="mui-navigate-right" href="#">面板1</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="mui-collapse-content">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <p>面板1子内容</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                </ul>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+</div>
+
+
+<script src="js/mui.js"></script>
+<script type="text/javascript">
+    mui.init()
+</script>
+<script src="js/app/mui.zoom.js"></script>
+<script src="js/app/mui.previewimage.js"></script>
+<script type="text/javascript">
+    //事件
+    window.onload = function () {
+        fillLocalData();
+        fillOtherData()
+    }
+</script>
+
+
+</body>
+
+</html>
